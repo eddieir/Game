@@ -1,6 +1,5 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
-
 
 const Score = props => {
   const style = {
@@ -8,7 +7,6 @@ const Score = props => {
     fontSize: 80,
     fill: "#d6d33e"
   };
-
   return (
     <g filter="url(#shadow)">
       <text x="300" y="80" style={style}>
@@ -17,10 +15,7 @@ const Score = props => {
     </g>
   );
 };
-
-score.PropTypes = {
+Score.propTypes = {
   score: PropTypes.number.isRequired
 };
-
 export default Score;
-

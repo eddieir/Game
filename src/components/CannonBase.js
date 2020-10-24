@@ -1,15 +1,14 @@
-import React from 'react';
+import React from "react";
 import { bezierCurve } from "./../utils/formulas";
 
-
 const CannonBase = () => {
-
   const style = {
     fill: "#a16012",
     stroke: "#75450e",
     strokeWidth: "2px"
   };
-  const width = 80, height = 60;
+  const width = 80,
+    height = 60;
   const curve = {
     startPoint: {
       x: width / -2,
@@ -17,6 +16,10 @@ const CannonBase = () => {
     },
     firstControlPoint: {
       x: width / 4,
+      y: -1 * height
+    },
+    secondControlPoint: {
+      x: (width * 3) / 4,
       y: -1 * height
     },
     endPoint: {
@@ -37,5 +40,4 @@ const CannonBase = () => {
     </g>
   );
 };
-
 export default CannonBase;

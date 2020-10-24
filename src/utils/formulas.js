@@ -35,3 +35,4 @@ export const calculateNextPosition = (x, y, angle, divisor = 300) => {
 export const checkCollision = (a, b) => {
   return a.x1 < b.x2 && a.x2 > b.x1 && a.y1 < b.y2 && a.y2 > b.y1;
 };
+

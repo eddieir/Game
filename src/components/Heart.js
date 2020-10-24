@@ -1,15 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { bezierCurve } from './../utils/formulas';
+import React from "react";
+import PropTypes from "prop-types";
+import { bezierCurve } from "./../utils/formulas";
 
 const Heart = props => {
-
   const style = {
     fill: "#da0d15",
     stroke: "#a51708",
     strokeWidth: "2px"
   };
-
   const leftCurve = {
     startPoint: {
       x: props.position.x,
@@ -39,11 +37,14 @@ const Heart = props => {
       y: -20
     },
     secondControlPoint: {
+      x: 40,
+      y: 10
+    },
+    endPoint: {
       x: 0,
       y: 40
     }
   };
-
   return (
     <g filter="url(#shadow)">
       <path d={bezierCurve(leftCurve)} style={style} />
@@ -51,7 +52,6 @@ const Heart = props => {
     </g>
   );
 };
-
 Heart.propTypes = {
   position: PropTypes.shape({
     x: PropTypes.number.isRequired,
@@ -59,4 +59,3 @@ Heart.propTypes = {
   }).isRequired
 };
 export default Heart;
-

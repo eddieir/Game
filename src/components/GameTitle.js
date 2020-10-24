@@ -7,8 +7,7 @@ const GameTitle = () => {
     fontSize: 80,
     fill: "#cbca62"
   };
-
-  const inversionCurve = {
+  const invasionCurve = {
     startPoint: {
       x: -190,
       y: -950
@@ -27,10 +26,10 @@ const GameTitle = () => {
     }
   };
   const protectTheEarthCurve = {
-    ...inversionCurve,
+    ...invasionCurve,
     startPoint: {
       x: -250,
-      y: -750
+      y: -780
     },
     firstControlPoint: {
       x: 125,

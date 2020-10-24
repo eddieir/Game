@@ -1,26 +1,64 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Canvas from "./components/Canvas";
+import { calculateCanvasPosition } from "./utils/formulas";
+class App extends Component {
+  componentDidMount() {
+    this.resizeTheWindow();
+    const self = this;
+    setInterval(() => {
+      self.props.moveObjects(self.canvasMousePosition);
+    }, 10);
+  }
+  resizeTheWindow = () => {
+    window.onresize = () => {
+      const canvas = document.getElementById("game-canvas");
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+    };
+    window.onresize();
+  };
+  trackMouse(e) {
+    this.canvasMousePosition = calculateCanvasPosition(e);
+  }
+  shoot = () => {
+    this.props.shoot(this.canvasMousePosition);
+  };
+  render() {
+    return (
+      <div className="App">
+        <Canvas
+          angle={this.props.angle}
+          startGame={this.props.startGame}
+          gameState={this.props.gameState}
+          trackMouse={e => {
+            this.trackMouse(e);
+          }}
+          shoot={this.shoot}
+        />
+      </div>
+    );
+  }
 }
 
+App.propTypes = {
+  angle: PropTypes.number.isRequired,
+  moveObjects: PropTypes.func.isRequired,
+  startGame: PropTypes.func.isRequired,
+  gameState: PropTypes.shape({
+    start: PropTypes.bool.isRequired,
+    kills: PropTypes.number.isRequired,
+    lives: PropTypes.number.isRequired,
+    currentSaucers: PropTypes.arrayOf(
+      PropTypes.shape({
+        position: PropTypes.shape({
+          x: PropTypes.number.isRequired,
+          y: PropTypes.number.isRequired
+        }).isRequired,
+        id: PropTypes.number.isRequired
+      })
+    ).isRequired
+  }).isRequired,
+  shoot: PropTypes.func.isRequired
+};
 export default App;
